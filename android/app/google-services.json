@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "11904134884-ncnacplu1n2a3vomi5pjil692l0jb9g8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.galliotl.toty",
+            "certificate_hash": "f28183dca162f87cd5aad74c427a621c6cae7554"
+          }
+        },
+        {
           "client_id": "11904134884-ji922dla9coeu1vl7t47p01se9tm10mb.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -30,6 +38,13 @@
             {
               "client_id": "11904134884-ji922dla9coeu1vl7t47p01se9tm10mb.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "11904134884-l98ud6gbs2icq6tiik6gcv5qdjuaqa4f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.galliotl.toty"
+              }
             }
           ]
         }
