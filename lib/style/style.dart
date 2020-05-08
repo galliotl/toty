@@ -33,11 +33,10 @@ ThemeData commonBetweenLightAndDark = ThemeData(
   ),
   textTheme: TextTheme(
     bodyText1: TextStyle(
-      fontFamily: 'Nunito',
-      fontSize: 17,
-      color: white,
-      fontWeight: FontWeight.w600
-    ),
+        fontFamily: 'Nunito',
+        fontSize: 17,
+        color: white,
+        fontWeight: FontWeight.w600),
     bodyText2: TextStyle(
       fontFamily: 'Nunito',
       fontSize: 15,
@@ -56,21 +55,23 @@ ThemeData commonBetweenLightAndDark = ThemeData(
 );
 
 ThemeData darkTheme = commonBetweenLightAndDark.copyWith(
-    canvasColor: deepBlack,
-    scaffoldBackgroundColor: deepBlack,
-    bottomAppBarColor: deepBlack,
-    textTheme: TextTheme(
-      bodyText1: TextStyle(
-        color: lightBlack,
-      ),
-      bodyText2: TextStyle(
-        color: Colors.white,
-      ),
-      subtitle1: TextStyle(color: lightBlue),
-      headline1: TextStyle(color: Colors.white),
-    ));
+  canvasColor: deepBlack,
+  scaffoldBackgroundColor: deepBlack,
+  bottomAppBarColor: deepBlack,
+  textTheme: TextTheme(
+    bodyText1: TextStyle(
+      color: lightBlack,
+    ),
+    bodyText2: TextStyle(
+      color: Colors.white,
+    ),
+    subtitle1: TextStyle(color: lightBlue),
+    headline1: TextStyle(color: Colors.white),
+  ),
+);
 
 ThemeData lightTheme = commonBetweenLightAndDark.copyWith(
-    canvasColor: white,
-    bottomAppBarColor: white,
-    scaffoldBackgroundColor: white);
+  canvasColor: white,
+  bottomAppBarColor: white,
+  scaffoldBackgroundColor: white,
+);
