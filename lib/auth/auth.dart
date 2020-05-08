@@ -57,7 +57,9 @@ class AuthService {
   }
 
   void signOut() {
-    _firebaseAuth.signOut();
+    _firebaseAuth
+        .signOut()
+        .then((_) => state.add(AuthenticationState.UnAuthenticated));
   }
 }
 
