@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "11904134884",
+    "firebase_url": "https://tots-80d47.firebaseio.com",
+    "project_id": "tots-80d47",
+    "storage_bucket": "tots-80d47.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:11904134884:android:a3c5c95ccf442caeca86f1",
+        "android_client_info": {
+          "package_name": "com.galliotl.toty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "11904134884-ji922dla9coeu1vl7t47p01se9tm10mb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8-Hhuo07hXIwx1FFLGxa9Yk1v8h5-i8s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "11904134884-ji922dla9coeu1vl7t47p01se9tm10mb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
