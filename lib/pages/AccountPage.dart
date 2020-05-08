@@ -28,7 +28,20 @@ class AccountPage extends StatelessWidget {
                     ],
                   ),
                 )
-              : Text('You are not logged in'),
+              : Center(
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        'You are ot signed in',
+                        style: Theme.of(context).textTheme.bodyText2,
+                      ),
+                      MaterialButton(
+                        onPressed: () => _signOut(context),
+                        child: Text('Go back'),
+                      )
+                    ],
+                  ),
+                ),
         );
       },
     );

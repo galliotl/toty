@@ -2,14 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:toty/auth/AuthenticationState.dart';
 import 'package:toty/auth/auth.dart';
 import 'package:toty/components/alerts/LoginAlert.dart';
+import 'package:toty/config/routes.dart';
 
 class HomePage extends StatelessWidget {
   void _goToAccount(context) {
-    Navigator.of(context).pushNamed('/account');
+    Navigator.of(context).pushNamed(accountRoute);
   }
 
   void _showLoginPopUp(context) {
-    showLoginDialog(context).then((value) => null);
+    showLoginDialog(
+      context: context,
+      targettedRoute: accountRoute,
+    ).then((value) => null);
   }
 
   @override

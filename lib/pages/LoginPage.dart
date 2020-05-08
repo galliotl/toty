@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:toty/auth/auth.dart';
+import 'package:toty/config/routes.dart';
 
 class LoginPage extends StatelessWidget {
   void signin(context) {
-    authService.googleSigIn().then((_) => Navigator.of(context).pop());
+    LoginPageArguments pageArguments = ModalRoute.of(context).settings.arguments;
+    String targettedRoute = pageArguments.targettedRoute != null ? pageArguments.targettedRoute : homeRoute;
+
+    // Signs in the used
+    authService.googleSigIn().then((_) {
+      Navigator.of(context).pushReplacementNamed(targettedRoute);
+    });
   }
 
   @override
@@ -17,4 +24,11 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
+}
+
+class LoginPageArguments {
+  /// Allows to specify a route that was initially
+  /// expected to be joined but got to sign in first
+  String targettedRoute;
+  LoginPageArguments({this.targettedRoute});
 }

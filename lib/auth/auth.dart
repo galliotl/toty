@@ -12,19 +12,23 @@ class AuthService {
 
   Stream<FirebaseUser> user;
   Stream<Map<String, dynamic>> profile;
-  PublishSubject state = PublishSubject();
+
+  PublishSubject<AuthenticationState> state = PublishSubject();
 
   AuthService() {
     user = _firebaseAuth.onAuthStateChanged;
-    profile = user.switchMap((FirebaseUser u) {
-      if (u != null) {
-        return _db
+
+    user.listen((fireUser) {
+      if (fireUser != null) {
+        profile = _db
             .collection('users')
-            .document(u.uid)
+            .document(fireUser.uid)
             .snapshots()
             .map((snap) => snap.data);
+        state.add(AuthenticationState.Authenticated);
       } else {
-        return Stream.value({});
+        profile = Stream.value({});
+        state.add(AuthenticationState.UnAuthenticated);
       }
     });
   }
