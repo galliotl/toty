@@ -21,6 +21,7 @@ dependencies:
   cloud_firestore: ^0.13.5
   google_sign_in: ^4.4.4
   rxdart: ^0.24.0
+  dots_indicator: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -30,9 +31,19 @@ flutter:
 
   uses-material-design: true
 
+  assets:
+    - assets/images/createaGame.svg
+    - assets/images/findaGame.svg
+    - assets/images/myClub.svg
+
   fonts:
     - family: Nunito
       fonts:
+        - asset: assets/fonts/Nunito-Black.ttf
+          weight: 900
+        - asset: assets/fonts/Nunito-BlackItalic.ttf
+          weight: 900
+          style: italic
         - asset: assets/fonts/Nunito-Bold.ttf
           weight: 700
         - asset: assets/fonts/Nunito-BoldItalic.ttf
@@ -50,7 +61,7 @@ flutter:
           style: italic
         - asset: assets/fonts/Nunito-Light.ttf
           weight: 200
-        - asset: assets/fonts/Nunito-Light.ttf
+        - asset: assets/fonts/Nunito-LightItalic.ttf
           weight: 200
           style: italic
         - asset: assets/fonts/Nunito-ExtraLight.ttf
