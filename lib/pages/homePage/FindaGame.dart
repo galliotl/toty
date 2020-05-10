@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:toty/components/snackbar/notYetImplementedSnackbar.dart';
 import 'package:toty/pages/homePage/HomePageContent.dart';
 
 class FindaGamePage extends StatelessWidget {
+  void _ctaCallBack(BuildContext context) {
+    Scaffold.of(context)
+        .showSnackBar(NotYetImplementedSnackbar(context: context));
+  }
+
   @override
   Widget build(BuildContext context) {
     return HomePageContent(
       caption: 'Want a quick game? See what games are organised nearby',
       title: 'Find a game',
       clipper: FindaGameClipper(),
-      ctaCallback: (BuildContext context) => {},
+      ctaCallback: _ctaCallBack,
       ctaText: 'Find a game',
       pathToImage: 'assets/images/findaGame.svg',
     );

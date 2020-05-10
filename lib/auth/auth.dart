@@ -1,40 +1,52 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:toty/auth/AuthenticationState.dart';
 
 /// Exposes firebase auth api logic in a simpler service class
-class AuthService {
+class AuthService with ChangeNotifier {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final Firestore _db = Firestore.instance;
 
-  Stream<FirebaseUser> user;
-  Stream<Map<String, dynamic>> profile;
+  Stream<FirebaseUser> _user;
 
-  PublishSubject<AuthenticationState> state = PublishSubject();
+  Stream<Map<String, dynamic>> _profile;
+  get profile => _profile;
+  set profile(Stream<Map<String, dynamic>> stream) {
+    _profile = stream;
+    notifyListeners();
+  }
+
+  AuthenticationState _state = AuthenticationState.Unchecked;
+  get state => _state;
+  set state(AuthenticationState newState) {
+    _state = newState;
+    notifyListeners();
+  }
 
   AuthService() {
-    user = _firebaseAuth.onAuthStateChanged;
+    state = AuthenticationState.Unchecked;
+    _user = _firebaseAuth.onAuthStateChanged;
 
-    user.listen((fireUser) {
+    _user.listen((fireUser) {
       if (fireUser != null) {
         profile = _db
             .collection('users')
             .document(fireUser.uid)
             .snapshots()
             .map((snap) => snap.data);
-        state.add(AuthenticationState.Authenticated);
+        state = AuthenticationState.Authenticated;
       } else {
         profile = Stream.value({});
-        state.add(AuthenticationState.UnAuthenticated);
+        state= AuthenticationState.UnAuthenticated;
       }
     });
   }
 
   Future<FirebaseUser> googleSigIn() async {
-    state.add(AuthenticationState.Authenticating);
+    state = AuthenticationState.Authenticating;
     GoogleSignInAccount googleUser = await _googleSignIn.signIn();
     GoogleSignInAuthentication googleAuth = await googleUser.authentication;
     AuthCredential credential = GoogleAuthProvider.getCredential(
@@ -44,7 +56,6 @@ class AuthService {
     FirebaseUser user =
         (await _firebaseAuth.signInWithCredential(credential)).user;
     updateUserData(user);
-    state.add(AuthenticationState.Authenticated);
     return user;
   }
 
@@ -61,11 +72,6 @@ class AuthService {
   }
 
   void signOut() {
-    _firebaseAuth
-        .signOut()
-        .then((_) => state.add(AuthenticationState.UnAuthenticated));
+    _firebaseAuth.signOut();
   }
 }
-
-// Creates an exposed auth service variable
-final AuthService authService = AuthService();

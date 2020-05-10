@@ -13,7 +13,7 @@ class LoginAlert extends StatelessWidget {
   }
 
   void _goToLogin(context) {
-    Navigator.of(context).pushReplacementNamed(
+    Navigator.of(context).pushNamed(
       loginRoute,
       arguments: LoginPageArguments(targettedRoute: targettedRoute),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:toty/auth/auth.dart';
 import 'package:toty/config/routes.dart';
 import 'package:toty/pages/AccountPage.dart';
 import 'package:toty/pages/homePage/HomePage.dart';
@@ -8,10 +9,15 @@ import 'package:toty/pages/LoginPage.dart';
 import 'package:toty/style/theme.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider<ThemeNotifier>(
-    child: Toty(),
-    create: (_) => ThemeNotifier(),
-  ));
+  runApp(
+    ChangeNotifierProvider<AuthService>(
+      create: (_) => AuthService(),
+      child: ChangeNotifierProvider<ThemeNotifier>(
+        child: Toty(),
+        create: (_) => ThemeNotifier(),
+      ),
+    ),
+  );
 }
 
 class Toty extends StatelessWidget {

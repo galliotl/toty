@@ -6,7 +6,7 @@ import 'package:toty/style/theme.dart';
 
 class AccountPage extends StatelessWidget {
   void _signOut(BuildContext context) {
-    authService.signOut();
+    Provider.of<AuthService>(context, listen: false).signOut();
     Navigator.of(context).pop();
   }
 
@@ -17,7 +17,7 @@ class AccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: authService.profile,
+      stream: Provider.of<AuthService>(context).profile,
       builder: (context, snapshot) {
         return Scaffold(
           body: snapshot.hasData

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:toty/auth/auth.dart';
 import 'package:toty/config/routes.dart';
 
@@ -8,7 +9,7 @@ class LoginPage extends StatelessWidget {
     String targettedRoute = pageArguments.targettedRoute != null ? pageArguments.targettedRoute : homeRoute;
 
     // Signs in the used
-    authService.googleSigIn().then((_) {
+    Provider.of<AuthService>(context, listen: false).googleSigIn().then((_) {
       Navigator.of(context).pushReplacementNamed(targettedRoute);
     });
   }

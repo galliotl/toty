@@ -75,7 +75,7 @@ ThemeData darkTheme = ThemeData(
   accentColor: deepBlue,
   fontFamily: 'Nunito',
   iconTheme: IconThemeData(
-    color: deepBlue,
+    color: lightGrey,
     size: 30,
   ),
   buttonTheme: ButtonThemeData(

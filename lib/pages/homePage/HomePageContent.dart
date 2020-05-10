@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:toty/auth/AuthenticationState.dart';
+import 'package:toty/auth/auth.dart';
 import 'package:toty/components/HomePageContentText.dart';
 import 'package:toty/components/HomePageIllustrationCard.dart';
+import 'package:toty/components/snackbar/loginSnackbar.dart';
 
 class HomePageContent extends StatelessWidget {
   final CustomClipper clipper;
@@ -9,6 +13,12 @@ class HomePageContent extends StatelessWidget {
   final String pathToImage;
   final String ctaText;
   final Function(BuildContext) ctaCallback;
+
+  void _ctaCallbackLoginWarning(BuildContext context) {
+    Scaffold.of(context).showSnackBar(LoginSnackbar(
+      context: context,
+    ));
+  }
 
   HomePageContent({
     @required this.clipper,
@@ -21,6 +31,7 @@ class HomePageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AuthenticationState state = Provider.of<AuthService>(context).state;
     return SafeArea(
       child: Container(
         child: Column(
@@ -34,7 +45,9 @@ class HomePageContent extends StatelessWidget {
             Expanded(
               child: HomePageIllustrationCard(
                 clipper: this.clipper,
-                ctaCallback: this.ctaCallback,
+                ctaCallback: state == AuthenticationState.Authenticated
+                    ? this.ctaCallback
+                    : this._ctaCallbackLoginWarning,
                 ctaText: this.ctaText,
                 pathToImage: this.pathToImage,
               ),
