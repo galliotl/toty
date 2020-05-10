@@ -1,77 +1,125 @@
 import 'package:flutter/material.dart';
 
-const Color lightBlue = Color.fromRGBO(69, 160, 157, 1);
-const Color deepBlue = Color.fromRGBO(72, 104, 152, 1);
-const Color deepBlack = Color.fromRGBO(34, 34, 34, 1);
-const Color lightBlack = Color.fromRGBO(85, 85, 85, 1);
-const Color green = Color.fromRGBO(90, 172, 66, 1);
-const Color lightGrey = Color.fromRGBO(236, 236, 236, 1);
+/// Defines the color palette
+const Color brown = Color.fromRGBO(138, 61, 45, 1);
+const Color orangeRed = Color.fromRGBO(249, 116, 73, 1);
+const Color red = Color.fromRGBO(243, 82, 53, 1);
+const Color deepBlue = Color.fromRGBO(8, 105, 147, 1);
+const Color darkBlue = Color.fromRGBO(8, 67, 93, 1);
+const Color lightBlue = Color.fromRGBO(137, 197, 204, 1);
 const Color white = Colors.white;
+const Color lightGrey = Color.fromRGBO(246, 242, 233, 1);
 
-LinearGradient gradient = LinearGradient(
-  // Where the linear gradient begins and ends
-  begin: Alignment.topLeft,
-  end: Alignment.bottomRight,
-  // Add one stop for each color. Stops should increase from 0 to 1
-  stops: [0.1, 0.9],
-  colors: [deepBlue, lightBlue],
-);
-
-ThemeData commonBetweenLightAndDark = ThemeData(
-  primaryColor: deepBlue,
-  accentColor: green,
-  iconTheme: IconThemeData(color: white),
-  bottomAppBarTheme: BottomAppBarTheme(
-    elevation: 0,
+ThemeData lightTheme = ThemeData(
+  canvasColor: lightGrey,
+  scaffoldBackgroundColor: lightGrey,
+  primaryColorDark: lightGrey,
+  primaryColorLight: deepBlue,
+  accentColor: orangeRed,
+  fontFamily: 'Nunito',
+  iconTheme: IconThemeData(
+    color: orangeRed,
+    size: 30,
   ),
   buttonTheme: ButtonThemeData(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-    buttonColor: deepBlue,
-    splashColor: lightBlue,
-    minWidth: 150,
-    height: 50,
+    minWidth: 234,
+    height: 52,
+    buttonColor: lightGrey,
+    splashColor: white,
   ),
   textTheme: TextTheme(
-    bodyText1: TextStyle(
-        fontFamily: 'Nunito',
-        fontSize: 17,
-        color: white,
-        fontWeight: FontWeight.w600),
-    bodyText2: TextStyle(
-      fontFamily: 'Nunito',
-      fontSize: 15,
+    button: TextStyle(
+      fontWeight: FontWeight.w700,
+      color: deepBlue,
+      fontSize: 24,
     ),
-    subtitle1: TextStyle(
-      fontFamily: 'Nunito',
-      fontWeight: FontWeight.bold,
-      fontSize: 20,
-    ),
+
+    /// Title of the app
     headline1: TextStyle(
-      fontFamily: 'Nunito',
-      fontWeight: FontWeight.bold,
+      fontWeight: FontWeight.w900,
+      fontSize: 137,
+      color: deepBlue,
+    ),
+
+    /// Regular page title
+    headline2: TextStyle(
+      fontWeight: FontWeight.w700,
       fontSize: 30,
+      fontStyle: FontStyle.italic,
+      color: deepBlue,
     ),
-  ),
-);
 
-ThemeData darkTheme = commonBetweenLightAndDark.copyWith(
-  canvasColor: deepBlack,
-  scaffoldBackgroundColor: deepBlack,
-  bottomAppBarColor: deepBlack,
-  textTheme: TextTheme(
+    /// regular text
     bodyText1: TextStyle(
-      color: lightBlack,
+      fontSize: 20,
+      fontWeight: FontWeight.w200,
+      color: deepBlue,
     ),
+
+    /// italic text
     bodyText2: TextStyle(
-      color: Colors.white,
+      fontSize: 20,
+      fontWeight: FontWeight.w200,
+      fontStyle: FontStyle.italic,
+      color: deepBlue,
     ),
-    subtitle1: TextStyle(color: lightBlue),
-    headline1: TextStyle(color: Colors.white),
   ),
 );
 
-ThemeData lightTheme = commonBetweenLightAndDark.copyWith(
-  canvasColor: white,
-  bottomAppBarColor: white,
-  scaffoldBackgroundColor: white,
+ThemeData darkTheme = ThemeData(
+  canvasColor: darkBlue,
+  scaffoldBackgroundColor: darkBlue,
+  primaryColorDark: lightGrey,
+  primaryColorLight: deepBlue,
+  accentColor: deepBlue,
+  fontFamily: 'Nunito',
+  iconTheme: IconThemeData(
+    color: deepBlue,
+    size: 30,
+  ),
+  buttonTheme: ButtonThemeData(
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+    minWidth: 234,
+    height: 52,
+    buttonColor: darkBlue,
+    splashColor: deepBlue,
+  ),
+  textTheme: TextTheme(
+    button: TextStyle(
+      fontWeight: FontWeight.w700,
+      color: lightGrey,
+      fontSize: 24,
+    ),
+
+    /// Title of the app
+    headline1: TextStyle(
+      fontWeight: FontWeight.w900,
+      fontSize: 137,
+      color: deepBlue,
+    ),
+
+    /// Regular page title
+    headline2: TextStyle(
+      fontWeight: FontWeight.w700,
+      fontSize: 30,
+      fontStyle: FontStyle.italic,
+      color: lightGrey,
+    ),
+
+    /// regular text
+    bodyText1: TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.w200,
+      color: lightGrey,
+    ),
+
+    /// italic text
+    bodyText2: TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.w200,
+      fontStyle: FontStyle.italic,
+      color: lightGrey,
+    ),
+  ),
 );

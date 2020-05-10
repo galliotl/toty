@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:toty/auth/auth.dart';
+import 'package:toty/components/buttons/CallToAction.dart';
+import 'package:toty/style/theme.dart';
 
 class AccountPage extends StatelessWidget {
-  void _signOut(context) {
+  void _signOut(BuildContext context) {
     authService.signOut();
     Navigator.of(context).pop();
+  }
+
+  void _switchTheme(BuildContext context) {
+    Provider.of<ThemeNotifier>(context, listen: false).switchDarkLight();
   }
 
   @override
@@ -24,6 +31,10 @@ class AccountPage extends StatelessWidget {
                       MaterialButton(
                         onPressed: () => _signOut(context),
                         child: Text('Signout'),
+                      ),
+                      CallToAction(
+                        callback: _switchTheme,
+                        text: 'Switch theme',
                       )
                     ],
                   ),

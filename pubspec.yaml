@@ -22,6 +22,7 @@ dependencies:
   google_sign_in: ^4.4.4
   rxdart: ^0.24.0
   dots_indicator: ^1.1.0
+  flutter_svg: ^0.17.4
 
 dev_dependencies:
   flutter_test:

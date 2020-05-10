@@ -4,7 +4,7 @@ import 'package:toty/pages/LoginPage.dart';
 
 // Todo: theme
 class LoginAlert extends StatelessWidget {
-  String targettedRoute;
+  final String targettedRoute;
 
   LoginAlert({this.targettedRoute});
 
