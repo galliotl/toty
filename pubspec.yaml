@@ -36,6 +36,8 @@ flutter:
     - assets/images/createaGame.svg
     - assets/images/findaGame.svg
     - assets/images/myClub.svg
+    - assets/images/noMatch.svg
+    - assets/images/noLocalisation.svg
 
   fonts:
     - family: Nunito
