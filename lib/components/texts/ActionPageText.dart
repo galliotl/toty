@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class HomePageContentText extends StatelessWidget {
+class ActionPageText extends StatelessWidget {
   final String title;
   final String caption;
 
-  HomePageContentText({@required this.title, @required this.caption});
+  ActionPageText({@required this.title, @required this.caption});
 
   @override
   Widget build(BuildContext context) {

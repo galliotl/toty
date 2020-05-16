@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:toty/components/snackbar/notYetImplementedSnackbar.dart';
-import 'package:toty/pages/homePage/HomePageContent.dart';
+import 'package:toty/components/layouts/ActionPageClip.dart';
 
-class FindaGamePage extends StatelessWidget {
+class FindaGamePanel extends StatelessWidget {
   void _ctaCallBack(BuildContext context) {
     Scaffold.of(context)
         .showSnackBar(NotYetImplementedSnackbar(context: context));
@@ -10,7 +10,7 @@ class FindaGamePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return HomePageContent(
+    return ActionPageClip(
       caption: 'Want a quick game? See what games are organised nearby',
       title: 'Find a game',
       clipper: FindaGameClipper(),

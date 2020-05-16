@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:toty/pages/homePage/HomePageContent.dart';
+import 'package:toty/components/layouts/ActionPageClip.dart';
 
-class MyTeamPage extends StatelessWidget {
+class MyTeamPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return HomePageContent(
+    return ActionPageClip(
       clipper: MyClubClipper(),
       title: 'My club',
       pathToImage: 'assets/images/myClub.svg',

@@ -4,6 +4,7 @@ import 'package:toty/components/indicator/PageDotsIndicator.dart';
 import 'package:toty/pages/homePage/CreateaGame.dart';
 import 'package:toty/pages/homePage/FindaGame.dart';
 import 'package:toty/pages/homePage/MyTeam.dart';
+import 'package:toty/pages/homePage/NextUp/NextUp.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -12,10 +13,10 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final PageController _pageController = PageController(
-    initialPage: 0,
+    initialPage: 1,
   );
 
-  int _currentindex = 0;
+  int _currentindex = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -33,13 +34,14 @@ class _HomePageState extends State<HomePage> {
               },
               controller: _pageController,
               children: [
-                FindaGamePage(),
-                CreateaGamePage(),
-                MyTeamPage(),
+                NextUpPanel(),
+                FindaGamePanel(),
+                CreateaGamePanel(),
+                MyTeamPanel(),
               ],
             ),
           ),
-          PageDotsIndicator(_currentindex, 3),
+          PageDotsIndicator(_currentindex, 4),
           AccountButton(),
         ],
       ),

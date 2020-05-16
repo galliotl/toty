@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:toty/pages/homePage/HomePageContent.dart';
+import 'package:toty/components/layouts/ActionPageClip.dart';
 
-class CreateaGamePage extends StatelessWidget {
+class CreateaGamePanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return HomePageContent(
+    return ActionPageClip(
       clipper: CreateaGameClipper(),
       title: 'Create a game',
       pathToImage: 'assets/images/createaGame.svg',

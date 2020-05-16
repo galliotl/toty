@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:toty/components/buttons/CallToAction.dart';
 
-class HomePageIllustrationCard extends StatelessWidget {
-  final CustomClipper clipper;
+class IllustrationCard extends StatelessWidget {
   final String pathToImage;
   final String ctaText;
   final Function(BuildContext) ctaCallback;
 
-  HomePageIllustrationCard({
-    @required this.clipper,
+  IllustrationCard({
     @required this.pathToImage,
     @required this.ctaText,
     @required this.ctaCallback,
@@ -21,18 +19,6 @@ class HomePageIllustrationCard extends StatelessWidget {
       overflow: Overflow.clip,
       fit: StackFit.loose,
       children: [
-        Positioned(
-          bottom: 0,
-          top: 0,
-          left: 15,
-          right: 15,
-          child: ClipPath(
-            clipper: clipper,
-            child: Container(
-              color: Theme.of(context).accentColor,
-            ),
-          ),
-        ),
         Positioned(
           bottom: 75,
           top: 0,
