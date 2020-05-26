@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:toty/components/buttons/accountButton.dart';
 import 'package:toty/components/indicator/PageDotsIndicator.dart';
-import 'package:toty/pages/homePage/CreateaGame.dart';
-import 'package:toty/pages/homePage/FindaGame.dart';
-import 'package:toty/pages/homePage/MyTeam.dart';
+import 'package:toty/pages/homePage/CreateaGame/CreateaGame.dart';
+import 'package:toty/pages/homePage/FindaGame/FindaGame.dart';
+import 'package:toty/pages/homePage/MyTeam/MyTeam.dart';
 import 'package:toty/pages/homePage/NextUp/NextUp.dart';
 
 class HomePage extends StatefulWidget {
