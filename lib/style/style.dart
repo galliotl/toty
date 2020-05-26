@@ -15,7 +15,9 @@ ThemeData lightTheme = ThemeData(
   scaffoldBackgroundColor: lightGrey,
   primaryColorDark: lightGrey,
   primaryColorLight: deepBlue,
+  errorColor: red,
   accentColor: orangeRed,
+  highlightColor: lightBlue,
   fontFamily: 'Nunito',
   iconTheme: IconThemeData(
     color: orangeRed,
@@ -72,7 +74,9 @@ ThemeData darkTheme = ThemeData(
   scaffoldBackgroundColor: darkBlue,
   primaryColorDark: lightGrey,
   primaryColorLight: deepBlue,
+  errorColor: red,
   accentColor: deepBlue,
+  highlightColor: lightBlue,
   fontFamily: 'Nunito',
   iconTheme: IconThemeData(
     color: lightGrey,
