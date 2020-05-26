@@ -2,7 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:toty/auth/AuthenticationState.dart';
+import 'package:toty/db/dbModels/User.dart';
 
 /// Exposes firebase auth api logic in a simpler service class
 class AuthService with ChangeNotifier {
@@ -10,43 +12,34 @@ class AuthService with ChangeNotifier {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final Firestore _db = Firestore.instance;
 
-  Stream<FirebaseUser> _user;
-
-  Stream<Map<String, dynamic>> _profile;
+  BehaviorSubject<User> _profile = BehaviorSubject<User>();
   get profile => _profile;
-  set profile(Stream<Map<String, dynamic>> stream) {
-    _profile = stream;
-    notifyListeners();
-  }
 
-  AuthenticationState _state = AuthenticationState.Unchecked;
+  BehaviorSubject<AuthenticationState> _state =
+      BehaviorSubject<AuthenticationState>();
   get state => _state;
-  set state(AuthenticationState newState) {
-    _state = newState;
-    notifyListeners();
-  }
 
   AuthService() {
-    state = AuthenticationState.Unchecked;
-    _user = _firebaseAuth.onAuthStateChanged;
-
-    _user.listen((fireUser) {
+    _state.add(AuthenticationState.Unchecked);
+    _firebaseAuth.onAuthStateChanged.listen((fireUser) {
       if (fireUser != null) {
-        profile = _db
-            .collection('users')
-            .document(fireUser.uid)
-            .snapshots()
-            .map((snap) => snap.data);
-        state = AuthenticationState.Authenticated;
+        _db.collection('users').document(fireUser.uid).snapshots().listen(
+          (snap) {
+            User user = User.fromJson(snap.documentID, snap.data);
+            _profile.add(user);
+          },
+        );
+        _state.add(AuthenticationState.Authenticated);
       } else {
-        profile = Stream.value({});
-        state= AuthenticationState.UnAuthenticated;
+        _profile.add(null);
+        _state.add(AuthenticationState.UnAuthenticated);
       }
     });
   }
 
+  /// Signs in to Google oAuth2 and notifies Firebase
   Future<FirebaseUser> googleSigIn() async {
-    state = AuthenticationState.Authenticating;
+    _state.add(AuthenticationState.Authenticating);
     GoogleSignInAccount googleUser = await _googleSignIn.signIn();
     GoogleSignInAuthentication googleAuth = await googleUser.authentication;
     AuthCredential credential = GoogleAuthProvider.getCredential(
@@ -63,7 +56,6 @@ class AuthService with ChangeNotifier {
     DocumentReference ref = _db.collection('users').document(user.uid);
 
     return ref.setData({
-      'uid': user.uid,
       'email': user.email,
       'photoUrl': user.photoUrl,
       'displayName': user.displayName,

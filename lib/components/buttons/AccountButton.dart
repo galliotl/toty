@@ -19,32 +19,37 @@ class AccountButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AuthenticationState state = Provider.of<AuthService>(context).state;
-    switch (state) {
-      case AuthenticationState.Authenticating:
-        {
-          return CircularProgressIndicator();
+    return StreamBuilder(
+      stream: Provider.of<AuthService>(context).state,
+      builder: (context, snap) {
+        AuthenticationState state = snap.data;
+        switch (state) {
+          case AuthenticationState.Authenticating:
+            {
+              return CircularProgressIndicator();
+            }
+          case AuthenticationState.Authenticated:
+            {
+              return IconButton(
+                icon: Icon(
+                  Icons.account_circle,
+                  size: 30,
+                ),
+                onPressed: () => _goToAccount(context),
+              );
+            }
+          default:
+            {
+              return FlatButton(
+                child: Text(
+                  'Login',
+                  style: Theme.of(context).textTheme.button,
+                ),
+                onPressed: () => _goToLogin(context),
+              );
+            }
         }
-      case AuthenticationState.Authenticated:
-        {
-          return IconButton(
-            icon: Icon(
-              Icons.account_circle,
-              size: 30,
-            ),
-            onPressed: () => _goToAccount(context),
-          );
-        }
-      default:
-        {
-          return FlatButton(
-            child: Text(
-              'Login',
-              style: Theme.of(context).textTheme.button,
-            ),
-            onPressed: () => _goToLogin(context),
-          );
-        }
-    }
+      },
+    );
   }
 }

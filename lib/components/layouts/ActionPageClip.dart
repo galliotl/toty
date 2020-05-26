@@ -21,17 +21,16 @@ class ActionPageClip extends StatelessWidget {
   }
 
   ActionPageClip({
-    @required this.clipper,
-    @required this.title,
-    @required this.pathToImage,
-    @required this.ctaText,
-    @required this.ctaCallback,
     @required this.caption,
+    @required this.clipper,
+    @required this.ctaCallback,
+    @required this.ctaText,
+    @required this.pathToImage,
+    @required this.title,
   });
 
   @override
   Widget build(BuildContext context) {
-    AuthenticationState state = Provider.of<AuthService>(context).state;
     return SafeArea(
       child: Container(
         child: Column(
@@ -43,13 +42,18 @@ class ActionPageClip extends StatelessWidget {
               caption: caption,
             ),
             Expanded(
-              child: ClippedIllustrationCard(
-                clipper: this.clipper,
-                ctaCallback: state == AuthenticationState.Authenticated
-                    ? this.ctaCallback
-                    : this._ctaCallbackLoginWarning,
-                ctaText: this.ctaText,
-                pathToImage: this.pathToImage,
+              child: StreamBuilder(
+                stream: Provider.of<AuthService>(context).state,
+                builder: (context, snap) {
+                  return ClippedIllustrationCard(
+                    clipper: this.clipper,
+                    ctaCallback: snap.data == AuthenticationState.Authenticated
+                        ? this.ctaCallback
+                        : this._ctaCallbackLoginWarning,
+                    ctaText: this.ctaText,
+                    pathToImage: this.pathToImage,
+                  );
+                },
               ),
             ),
           ],

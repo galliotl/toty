@@ -20,16 +20,15 @@ class ActionPage extends StatelessWidget {
   }
 
   ActionPage({
-    @required this.title,
-    @required this.pathToImage,
-    @required this.ctaText,
-    @required this.ctaCallback,
     @required this.caption,
+    @required this.ctaCallback,
+    @required this.ctaText,
+    @required this.pathToImage,
+    @required this.title,
   });
 
   @override
   Widget build(BuildContext context) {
-    AuthenticationState state = Provider.of<AuthService>(context).state;
     return SafeArea(
       child: Container(
         child: Column(
@@ -41,12 +40,17 @@ class ActionPage extends StatelessWidget {
               caption: caption,
             ),
             Expanded(
-              child: IllustrationCard(
-                ctaCallback: state == AuthenticationState.Authenticated
-                    ? this.ctaCallback
-                    : this._ctaCallbackLoginWarning,
-                ctaText: this.ctaText,
-                pathToImage: this.pathToImage,
+              child: StreamBuilder(
+                stream: Provider.of<AuthService>(context).state,
+                builder: (context, snap) {
+                  return IllustrationCard(
+                    ctaCallback: snap.data == AuthenticationState.Authenticated
+                        ? this.ctaCallback
+                        : this._ctaCallbackLoginWarning,
+                    ctaText: this.ctaText,
+                    pathToImage: this.pathToImage,
+                  );
+                },
               ),
             ),
           ],
